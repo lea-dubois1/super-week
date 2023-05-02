@@ -22,7 +22,6 @@ $router->map('GET', '/users/[i:id]?', function($id) {
 $router->map('GET', '/addUser', function() {
 
     require_once 'vendor/autoload.php';
-
     $faker = Faker\Factory::create("fr_FR");
     
     $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
@@ -36,22 +35,28 @@ $router->map('GET', '/addUser', function() {
                        ':first_name' => $faker->firstName(),
                        ':last_name' => $faker->lastName()
         ]);
-
     }
 
-    // for ($j=0; $j < 10; $j++) {
+}, "addUser");
 
-    //     $titre = $faker->word();
-    //     $content = $faker->realTextBetween($minNbChars = 200, $maxNbChars = 260, $indexSize = 2);
-    //     $id_user = $faker->randomDigitNotNull();
+$router->map('GET', '/addBook', function() {
 
-    //     $sqlBook = "INSERT INTO book (titre, content, id_user) VALUES (" . $titre . ", " . $content . ", " . $id_user . ")";
-    //     $reqBook = $conn->prepare($sqlBook);
-    //     $reqBook->execute();
+    require_once 'vendor/autoload.php';
+    $faker = Faker\Factory::create("fr_FR");
 
-    // }
-}, "add");
+    $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
 
+    $sql = "INSERT INTO book (titre, content, id_user) VALUES (:titre, :content, :id_user)";
+    $req = $conn->prepare($sql);
+
+    for ($j=0; $j < 10; $j++) {
+
+        $req->execute([':titre' => $faker->word(),
+                       ':content' => $faker->realTextBetween($minNbChars = 200, $maxNbChars = 260, $indexSize = 2),
+                       ':id_user' => $faker->randomDigitNotNull()
+        ]);
+    }
+}, 'addBook');
 
 
 $match = $router->match();
