@@ -31,6 +31,7 @@ class UserModel
         $sql = "SELECT * FROM user WHERE email = :email";
         $req = $conn->prepare($sql);
         $req->execute([':email' => $email]);
+        var_dump($req->rowCount());
         return $req->rowCount();
     }
 
@@ -44,6 +45,15 @@ class UserModel
                        ':last_name' => $lastname,
                        ':password' => $hash
         ]);
+    }
+
+    public function getPassDB($email)
+    {
+        $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
+        $sql = "SELECT password FROM user WHERE email = :email";
+        $req = $conn->prepare($sql);
+        $req->execute([':email' => $email]);
+        return $req->fetch(\PDO::FETCH_ASSOC);
     }
 
 }

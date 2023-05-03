@@ -58,8 +58,17 @@ $router->map('GET', '/register', function() {
 
 $router->map('POST', '/register', function() {    
     $auth = new AuthController;
-    $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
+    echo $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
 }, 'registerPOST');
+
+$router->map('GET', '/login', function() {
+    require 'src/View/login.php';
+}, 'loginGET');
+
+$router->map('POST', '/login', function() {
+    $auth = new AuthController;
+    echo $auth->login($_POST['email'], $_POST['password']);
+}, 'loginPOST');
 
 
 $match = $router->match();
