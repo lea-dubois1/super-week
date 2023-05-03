@@ -56,13 +56,9 @@ $router->map('GET', '/register', function() {
     require 'src/View/register.php';
 }, 'register');
 
-$router->map('POST', '/register', function() {
-
-    var_dump($_POST);
-    
+$router->map('POST', '/register', function() {    
     $auth = new AuthController;
     $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
-
 }, 'registerPOST');
 
 
