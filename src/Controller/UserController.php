@@ -20,7 +20,6 @@ class UserController
 
     public function create()
     {
-
         $faker = Faker\Factory::create("fr_FR");
 
         for ($i=0; $i < 10; $i++) {
@@ -37,7 +36,6 @@ class UserController
             $model = new UserModel();
             $model->createUser($params);
         }
-
     }
 
 }

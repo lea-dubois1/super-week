@@ -1,6 +1,8 @@
 <?php
 
 require_once 'vendor/autoload.php';
+
+use App\Controller\AuthController;
 use App\Controller\UserController;
 
 $router = new AltoRouter();
@@ -53,6 +55,15 @@ $router->map('GET', '/addBook', function() {
 $router->map('GET', '/register', function() {
     require 'src/View/register.php';
 }, 'register');
+
+$router->map('POST', '/register', function() {
+
+    var_dump($_POST);
+    
+    $auth = new AuthController;
+    $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
+
+}, 'registerPOST');
 
 
 $match = $router->match();

@@ -8,8 +8,10 @@
 </head>
 <body>
     
-    <form action="">
-        <input type="text" name="login" id="login" placeholder="Login" />
+    <form action="register" method="POST">
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <input type="text" name="firstname" id="firstname" placeholder="First name" />
+        <input type="text" name="lastname" id="lastname" placeholder="Last name" />
         <input type="password" name="password" id="password" placeholder="Password" />
         <button type="submit">Register</button>
     </form>
