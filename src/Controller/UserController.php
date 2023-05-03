@@ -10,6 +10,8 @@ class UserController
     {
         $model = new UserModel();
         $allUsers = $model->findAll();
+
+        return json_encode($allUsers, JSON_PRETTY_PRINT);
     }
 
 }
