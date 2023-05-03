@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+use App\Controller\UserController;
 
 $router = new AltoRouter();
 
@@ -11,9 +12,9 @@ $router->map( 'GET', '/', function() {
     echo "<h1>Bienvenu sur l'accueil</h1>";
 }, 'home' );
 
-$router->map('GET', "/users", function() {
-    echo "<h1>Bienvenu sur la liste des Utilisateurs</h1>";
-}, "users");
+// $router->map('GET', "/users", function() {
+//     echo "<h1>Bienvenu sur la liste des Utilisateurs</h1>";
+// }, "users");
 
 $router->map('GET', '/users/[i:id]?', function($id) {
     echo "<h1>Bienvenu sur la page de l'utilisateur " . $id . "</h1>";
@@ -57,6 +58,10 @@ $router->map('GET', '/addBook', function() {
         ]);
     }
 }, 'addBook');
+
+$router->map('GET', '/users', function() {
+    
+}, 'users2');
 
 
 $match = $router->match();
