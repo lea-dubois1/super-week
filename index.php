@@ -60,6 +60,8 @@ $router->map('GET', '/addBook', function() {
 }, 'addBook');
 
 $router->map('GET', '/users', function() {
+
+    $controller = new UserController();
     
 }, 'users2');
 
