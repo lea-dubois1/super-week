@@ -9,6 +9,7 @@ class UserController
     public function list()
     {
         $model = new UserModel();
+        $allUsers = $model->findAll();
     }
 
 }
