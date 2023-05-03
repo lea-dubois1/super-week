@@ -28,28 +28,12 @@ $router->map('GET', '/users/[i:id]?', function($id) {
 }, 'user');
 
 $router->map('GET', '/addUser', function() {
-
-    require_once 'vendor/autoload.php';
-    $faker = Faker\Factory::create("fr_FR");
-    
-    $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
-
-    $sql = "INSERT INTO user (email, first_name, last_name) VALUES (:email, :first_name, :last_name)";
-    $req = $conn->prepare($sql);
-
-    for ($i=0; $i < 10; $i++) {
-
-        $req->execute([':email' => $faker->email(),
-                       ':first_name' => $faker->firstName(),
-                       ':last_name' => $faker->lastName()
-        ]);
-    }
-
+    $user = new UserController();
+    $user->create();
 }, "addUser");
 
 $router->map('GET', '/addBook', function() {
 
-    require_once 'vendor/autoload.php';
     $faker = Faker\Factory::create("fr_FR");
 
     $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
@@ -65,6 +49,10 @@ $router->map('GET', '/addBook', function() {
         ]);
     }
 }, 'addBook');
+
+$router->map('GET', '/register', function() {
+    require 'src/View/register.php';
+}, 'register');
 
 
 $match = $router->match();

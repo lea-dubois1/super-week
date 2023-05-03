@@ -3,6 +3,10 @@
 namespace App\Controller;
 use App\Model\UserModel;
 
+require_once 'vendor/autoload.php';
+
+use Faker;
+
 class UserController
 {
 
@@ -12,6 +16,28 @@ class UserController
         $allUsers = $model->findAll();
 
         return json_encode($allUsers, JSON_PRETTY_PRINT);
+    }
+
+    public function create()
+    {
+
+        $faker = Faker\Factory::create("fr_FR");
+
+        for ($i=0; $i < 10; $i++) {
+    
+            $first_name = $faker->firstName();
+            $last_name = $faker->lastName();
+
+            $params = [':email' => strtolower($first_name) . "." . strtolower($last_name) . "@" . $faker->freeEmailDomain(),
+                       ':first_name' => $first_name,
+                       ':last_name' => $last_name,
+                       ':password' => password_hash("azerty", PASSWORD_DEFAULT)
+            ];
+
+            $model = new UserModel();
+            $model->createUser($params);
+        }
+
     }
 
 }
