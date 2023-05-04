@@ -98,6 +98,11 @@ $router->map('GET', '/books/[i:id]', function($id) {
     echo $book->dataOne($id);
 }, 'displayOneBook');
 
+$router->map('GET', '/logout', function() {
+    session_destroy();
+    require_once __DIR__ . '/src/View/logout.php';
+}, 'logout');
+
 
 $match = $router->match();
 
