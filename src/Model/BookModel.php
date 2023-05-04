@@ -15,6 +15,15 @@ class BookModel
                        ':id_user' => $idUser
         ]);
     } 
+
+    public function getDataAll(): array
+    {
+        $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
+        $sql = "SELECT * FROM book";
+        $req = $conn->prepare($sql);
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
