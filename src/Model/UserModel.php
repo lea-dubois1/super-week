@@ -56,6 +56,15 @@ class UserModel
         return $req->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function getData($id)
+    {
+        $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
+        $sql = "SELECT * FROM user WHERE id = :id";
+        $req = $conn->prepare($sql);
+        $req->execute([':id' => $id]);
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
 
 ?>
