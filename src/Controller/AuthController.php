@@ -15,7 +15,7 @@ class AuthController
 
         if($row < 1) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $model->insertUser($email, $firstname, $lastname, $hash);
+            $model->insert('user', ['email' => $email, 'first_name' => $firstname, 'last_name' => $lastname, 'password' => $hash]);
             return "Inscription terminée";
         }else{
             return "Email déjà présent dans la base de donnée";

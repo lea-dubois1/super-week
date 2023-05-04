@@ -3,12 +3,14 @@
 namespace App\Controller;
 use App\Model\BookModel;
 
+require_once 'vendor/autoload.php';
+
 class BookController
 {
     public function addBook($titre, $contenu, $userId)
     {
         $model = new BookModel;
-        $model->add($titre, $contenu, $userId);
+        $model->insert('book', ['titre' => $titre, 'content' => $contenu, 'id_user' => $userId]);
         return "Le livre a bien été ajouté";
     }
 

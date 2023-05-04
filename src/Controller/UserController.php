@@ -34,7 +34,7 @@ class UserController
             ];
 
             $model = new UserModel();
-            $model->createUser($params);
+            $model->insert('user', $params);
         }
     }
 

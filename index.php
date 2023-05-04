@@ -102,6 +102,10 @@ $router->map('GET', '/logout', function() {
     require_once __DIR__ . '/src/View/logout.php';
 }, 'logout');
 
+$router->map('GET', '/test', function() {
+    require_once __DIR__ . '/src/Model/BaseModel.php';
+}, 'test');
+
 
 $match = $router->match();
 
