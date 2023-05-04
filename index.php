@@ -93,6 +93,11 @@ $router->map('GET', '/books', function() {
     echo $book->dataAll();
 }, 'seeAllBooksJson');
 
+$router->map('GET', '/books/[i:id]', function($id) {
+    $book = new BookController;
+    echo $book->dataOne($id);
+}, 'displayOneBook');
+
 
 $match = $router->match();
 

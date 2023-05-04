@@ -17,6 +17,12 @@ class BookController
         $model = new BookModel;
         return json_encode($model->getDataAll(), JSON_PRETTY_PRINT);
     }
+
+    public function dataOne($id)
+    {
+        $model = new BookModel;
+        return json_encode($model->getDataOne($id), JSON_PRETTY_PRINT);
+    }
 }
 
 

@@ -24,6 +24,15 @@ class BookModel
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function getDataOne($id)
+    {
+        $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
+        $sql = "SELECT * FROM book WHERE id = :id";
+        $req = $conn->prepare($sql);
+        $req->execute([':id' => $id]);
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
