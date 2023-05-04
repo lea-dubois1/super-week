@@ -88,6 +88,11 @@ $router->map('POST', '/books/write', function() {
     $book->addBook($_POST['titre'], $_POST['content'], $_SESSION['user']['id']);
 }, 'bookWritePOST');
 
+$router->map('GET', '/books', function() {
+    $book = new BookController;
+    echo $book->dataAll();
+}, 'seeAllBooksJson');
+
 
 $match = $router->match();
 

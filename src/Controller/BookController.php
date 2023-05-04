@@ -11,6 +11,12 @@ class BookController
         $model->add($titre, $contenu, $userId);
         return "Le livre a bien été ajouté";
     }
+
+    public function dataAll()
+    {
+        $model = new BookModel;
+        return json_encode($model->getDataAll(), JSON_PRETTY_PRINT);
+    }
 }
 
 
