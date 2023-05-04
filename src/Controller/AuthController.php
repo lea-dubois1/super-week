@@ -33,6 +33,8 @@ class AuthController
 
             if(password_verify($password, $DBPass) === true) {
 
+                $_SESSION['user'] = $model->getDataByMail($email)[0];
+
                 return "Connexion réussie";
             }
 

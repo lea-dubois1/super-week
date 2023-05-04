@@ -1,9 +1,14 @@
 <?php
 
+session_start();
+
+// session_destroy();
+
 require_once 'vendor/autoload.php';
 
 use App\Controller\AuthController;
 use App\Controller\UserController;
+use App\Controller\BookController;
 
 $router = new AltoRouter();
 
@@ -58,8 +63,7 @@ $router->map('GET', '/register', function() {
     require_once __DIR__ . '/src/View/register.php';
 }, 'register');
 
-$router->map('POST', '/register', function() {   
-    require_once __DIR__ . '/src/View/register.php';
+$router->map('POST', '/register', function() {
     $auth = new AuthController;
     echo $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
 }, 'registerPOST');
@@ -69,10 +73,20 @@ $router->map('GET', '/login', function() {
 }, 'loginGET');
 
 $router->map('POST', '/login', function() {
-    require_once __DIR__ . 'src/View/login.php';
     $auth = new AuthController;
     echo $auth->login($_POST['email'], $_POST['password']);
 }, 'loginPOST');
+
+$router->map('GET', '/books/write', function() {
+    require_once __DIR__ . '/src/View/addBook.php';
+    var_dump($_SESSION);
+}, 'bookWriteGET');
+
+$router->map('POST', '/books/write', function() {
+    $book = new BookController;
+    var_dump($_POST);
+    $book->addBook($_POST['titre'], $_POST['content'], $_SESSION['user']['id']);
+}, 'bookWritePOST');
 
 
 $match = $router->match();
