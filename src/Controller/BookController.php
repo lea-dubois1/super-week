@@ -17,13 +17,13 @@ class BookController
     public function dataAll()
     {
         $model = new BookModel;
-        return json_encode($model->getDataAll(), JSON_PRETTY_PRINT);
+        return json_encode($model->selectAll('book'), JSON_PRETTY_PRINT);
     }
 
     public function dataOne($id)
     {
         $model = new BookModel;
-        return json_encode($model->getDataOne($id), JSON_PRETTY_PRINT);
+        return json_encode($model->selectWhere('book', ['id' => $id], []), JSON_PRETTY_PRINT);
     }
 }
 

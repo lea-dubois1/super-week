@@ -29,11 +29,11 @@ class AuthController
 
         if($row > 0) {
 
-            $DBPass = $model->getPassDB($email)['password'];
+            $DBPass = $model->selectWhere('user', ['email' => $email], ["password"])[0]['password'];
 
             if(password_verify($password, $DBPass) === true) {
 
-                $_SESSION['user'] = $model->getDataByMail($email)[0];
+                $_SESSION['user'] = $model->selectWhere('user', ['email' => $email], [])[0];
 
                 return "Connexion réussie";
             }
