@@ -38,6 +38,13 @@ class UserController
         }
     }
 
+    public function dataById($id)
+    {
+        $model = new UserModel();
+        $data = $model->getData($id);
+        return json_encode($data, JSON_PRETTY_PRINT);
+    }
+
 }
 
 ?>

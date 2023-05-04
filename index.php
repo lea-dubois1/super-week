@@ -25,8 +25,10 @@ $router->map('GET', "/users", function() {
     echo "<h1>Bienvenu sur la liste des Utilisateurs</h1>";
 }, "users");
 
-$router->map('GET', '/users/[i:id]?', function($id) {
+$router->map('GET', '/users/[i:id]', function($id) {
     echo "<h1>Bienvenu sur la page de l'utilisateur " . $id . "</h1>";
+    $user = new UserController;
+    echo $user->dataById($id);
 }, 'user');
 
 $router->map('GET', '/addUser', function() {
@@ -53,19 +55,21 @@ $router->map('GET', '/addBook', function() {
 }, 'addBook');
 
 $router->map('GET', '/register', function() {
-    require 'src/View/register.php';
+    require_once __DIR__ . '/src/View/register.php';
 }, 'register');
 
-$router->map('POST', '/register', function() {    
+$router->map('POST', '/register', function() {   
+    require_once __DIR__ . '/src/View/register.php';
     $auth = new AuthController;
     echo $auth->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
 }, 'registerPOST');
 
 $router->map('GET', '/login', function() {
-    require 'src/View/login.php';
+    require_once __DIR__ . '/src/View/login.php';
 }, 'loginGET');
 
 $router->map('POST', '/login', function() {
+    require_once __DIR__ . 'src/View/login.php';
     $auth = new AuthController;
     echo $auth->login($_POST['email'], $_POST['password']);
 }, 'loginPOST');
