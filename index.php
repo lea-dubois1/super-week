@@ -16,7 +16,7 @@ $router->setBasePath('/super-week');
 
 
 $router->map( 'GET', '/', function() {
-    echo "<h1>Bienvenu sur l'accueil</h1>";
+    require_once __DIR__ . "/src/View/home.php";
 }, 'home' );
 
 $router->map('GET', '/users', function() {
@@ -31,7 +31,6 @@ $router->map('GET', "/users", function() {
 }, "users");
 
 $router->map('GET', '/users/[i:id]', function($id) {
-    echo "<h1>Bienvenu sur la page de l'utilisateur " . $id . "</h1>";
     $user = new UserController;
     echo $user->dataById($id);
 }, 'user');
