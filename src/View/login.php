@@ -10,8 +10,8 @@
 
     <form action="login" method="post">
         <input type="email" name="email" id="email" placeholder="Email" />
-        <input type="password" name="password" id="password" placeholder="Password" />
-        <button type="submit">Login</button>
+        <input type="password" name="password" id="password" placeholder="Mot de passe" />
+        <button type="submit">Connexion</button>
     </form>
     
 </body>

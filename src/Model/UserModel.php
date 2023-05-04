@@ -65,6 +65,15 @@ class UserModel
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getDataByMail($email)
+    {
+        $conn = new \PDO('mysql:host=localhost;dbname=revisions', "root", "");
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $req = $conn->prepare($sql);
+        $req->execute([':email' => $email]);
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
 
 ?>
