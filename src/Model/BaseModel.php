@@ -48,6 +48,7 @@ class BaseModel
             $sql .= "* FROM " . $table . " WHERE ";
 
         }else{
+
             foreach ($values as $value) {
                 $sql .= $value . ", ";
             }
@@ -55,11 +56,19 @@ class BaseModel
             $sql = substr($sql, 0, -2) . " FROM " . $table . " WHERE ";
         }
 
-        foreach ($params as $key => $value) {
-            $sql .= $key . " = :" . $key . " AND ";
-        }
+        if ($params === null || $params === []) {
 
-        $sql = substr($sql, 0, -5);
+            $sql = substr($sql, 0, -7);
+
+        }else{
+
+            foreach ($params as $key => $value) {
+                $sql .= $key . " = :" . $key . " AND ";
+            }
+
+            $sql = substr($sql, 0, -5);
+
+        }
 
         $req = $this->conn->prepare($sql);
         $req->execute($params);
@@ -68,6 +77,6 @@ class BaseModel
 }
 
 $test = new BaseModel;
-$test->selectWhere('user', ['id' => 1, 'first_name' => 'Gilles'], ["last_name"])
+$test->selectWhere('user', [], ["last_name"])
 
 ?>
