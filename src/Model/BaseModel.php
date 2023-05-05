@@ -72,7 +72,7 @@ class BaseModel
 
         $req = $this->conn->prepare($sql);
         $req->execute($params);
-        var_dump($req->fetchAll(\PDO::FETCH_ASSOC));
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
 
