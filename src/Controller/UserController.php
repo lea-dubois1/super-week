@@ -13,7 +13,7 @@ class UserController
     public function list()
     {
         $model = new UserModel();
-        $allUsers = $model->selectAll('user');
+        $allUsers = $model->select([], []);
 
         return json_encode($allUsers, JSON_PRETTY_PRINT);
     }
@@ -34,14 +34,14 @@ class UserController
             ];
 
             $model = new UserModel();
-            $model->insert('user', $params);
+            $model->insert($params);
         }
     }
 
     public function dataById($id)
     {
         $model = new UserModel();
-        $data = $model->selectWhere('user', ['id' => $id], []);
+        $data = $model->select([], ['id' => $id]);
         return json_encode($data, JSON_PRETTY_PRINT);
     }
 

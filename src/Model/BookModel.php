@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-class BookModel extends BaseModel
+class BookModel extends AbstractModel
 {
-    
+    protected string $table = 'book';    
 }
 
 ?>

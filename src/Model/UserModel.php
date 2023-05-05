@@ -2,8 +2,10 @@
 
 namespace App\Model;
 
-class UserModel extends BaseModel
+class UserModel extends AbstractModel
 {
+    protected string $table = 'user';
+    
     public function checkUserExist($email): bool
     {
         $sql = "SELECT * FROM user WHERE email = :email";

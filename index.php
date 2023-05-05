@@ -103,7 +103,7 @@ $router->map('GET', '/logout', function() {
 }, 'logout');
 
 $router->map('GET', '/test', function() {
-    require_once __DIR__ . '/src/Model/BaseModel.php';
+    require_once __DIR__ . 'test.php';
 }, 'test');
 
 
